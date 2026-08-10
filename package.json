@@ -1,0 +1,13 @@
+{
+  "name": "wedding-invitations",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Four invitation sites for Humaid Ali Mollah & Shumaila Akhtar — Kolkata, 29 December 2026 – 3 January 2027",
+  "scripts": {
+    "dev:full": "npx --yes serve wedding-invitation -l 4173",
+    "dev:baraat": "npx --yes serve wedding-invitation-baraat -l 4174",
+    "dev:walima": "npx --yes serve wedding-invitation-reception -l 4175",
+    "dev:both": "npx --yes serve wedding-invitation-baraat-reception -l 4176"
+  },
+  "license": "UNLICENSED"
+}

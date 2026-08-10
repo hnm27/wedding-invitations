@@ -1,0 +1,18 @@
+# logs
+*.log
+
+# os cruft
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+
+# tooling
+node_modules/
+.vercel
+
+# source photo (studio original, watermarked) — used only as
+# drawing reference for the SVG, never served
+reference/

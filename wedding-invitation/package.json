@@ -1,0 +1,11 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wedding invitation for Humaid Ali Mollah & Shumaila Akhtar — Kolkata, 1 January 2027",
+  "scripts": {
+    "dev": "npx --yes serve . -l 4173",
+    "start": "npm run dev"
+  },
+  "license": "UNLICENSED"
+}
