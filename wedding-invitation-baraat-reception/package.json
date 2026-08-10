@@ -1,0 +1,11 @@
+{
+  "name": "wedding-invitation-baraat-reception",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Baraat & Walima invitation for Humaid Ali Mollah & Shumaila Akhtar — Kolkata, 1 & 3 January 2027",
+  "scripts": {
+    "dev": "npx --yes serve . -l 4176",
+    "start": "npm run dev"
+  },
+  "license": "UNLICENSED"
+}
