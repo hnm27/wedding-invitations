@@ -401,11 +401,13 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   font-size:clamp(1.32rem,6.1vw,2.35rem); letter-spacing:.045em; color:var(--ink);
 }
 .names .lineage{
-  /* no max-width: these should sit on one line wherever they fit, and
-     balance rather than orphan a surname when they cannot */
-  display:block; margin:.55rem auto 0; text-wrap:balance;
-  font-family:var(--body); font-style:italic; font-weight:500; font-size:.9rem;
-  line-height:1.5; color:var(--ink); opacity:.9; letter-spacing:.01em;
+  /* Set to match the hosts' line at the top of the section — same face, size,
+     tracking and case — so both sets of parents are given equal weight on the
+     card. Balances rather than orphaning a surname when it cannot fit one line. */
+  display:block; margin:.75rem auto 0; text-wrap:balance;
+  font-family:var(--display); font-style:normal; font-weight:400; font-size:.74rem;
+  text-transform:uppercase; letter-spacing:.2em; padding-left:.2em;
+  line-height:1.55; color:var(--ink); max-width:30ch;
 }
 /* an eight-petal rosette, echoing the motif in the background tile */
 .names .joiner{
@@ -493,7 +495,10 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 .verse{text-align:center}
 .verse .ar{
   font-family:var(--arabic); direction:rtl; line-height:2.5;
-  font-size:clamp(1.3rem,4.8vw,1.75rem); color:var(--ink); margin:0 auto; max-width:26ch;
+  font-size:clamp(1.3rem,4.8vw,1.75rem); color:var(--ink); max-width:26ch;
+  /* the label above it is only .2rem clear on its own, and there is no longer a
+     rule between the two, so the space has to come from here */
+  margin:clamp(18px,3vh,30px) auto 0;
 }
 .verse .en{text-wrap:balance;font-style:italic;font-weight:500;color:var(--ink);
   max-width:44ch;margin:1.5rem auto 0;font-size:1.1em}
