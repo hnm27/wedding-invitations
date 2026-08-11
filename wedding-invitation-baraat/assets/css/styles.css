@@ -386,6 +386,11 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 /* hero ---------------------------------------------------- */
 .frame{display:none}
 .hero{text-align:center;padding-top:clamp(48px,9vh,86px);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+/* The bismillah now opens the card on its own, and the invitation proper — the
+   hosts, their request, and the names — follows the Qur'an verse as its own
+   section. It inherits the hero's centring but not its full-height stage. */
+.invite{text-align:center}
+.invite .names{margin-top:clamp(16px,3vh,26px)}
 .bismillah{font-family:var(--arabic);font-size:clamp(1.7rem,7vw,2.7rem);color:var(--ink);margin:0 0 .5rem;line-height:1.95}
 .bismillah-en{font-style:italic;font-weight:500;color:var(--ink);font-size:.98rem;
   margin:0 auto;max-width:34ch;text-wrap:balance;line-height:1.55}
@@ -411,7 +416,15 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   background:linear-gradient(90deg,transparent,var(--gold))}
 .names .joiner i+i{background:none}
 .names .joiner i:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
-.names .joiner svg{width:22px;height:22px;flex:none;opacity:.95}
+/* The ampersand joining the two names, in place of the rosette that was here.
+   It is set in the body italic rather than the display face so it reads as a
+   ligature between the names rather than as a third line of display type, and
+   it keeps the gold of the rules it hangs between — the one place gold carries
+   a character rather than a rule, because it is doing the ornament's job. */
+.names .joiner b{
+  flex:none; font-family:var(--body); font-style:italic; font-weight:500;
+  font-size:clamp(1.3rem,4.8vw,1.8rem); line-height:1; color:var(--gold);
+}
 .request{margin:clamp(18px,3.2vh,28px) auto 0;font-family:var(--display);
   letter-spacing:.14em;text-transform:uppercase;max-width:26ch;text-wrap:balance;
   font-size:clamp(.64rem,2.2vw,.8rem);color:var(--ink);padding-left:.14em}

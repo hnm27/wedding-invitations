@@ -14,7 +14,7 @@ card itself says *Walima* throughout.
 
 | | |
 | --- | --- |
-| The hero | Restructured as one sentence issued by the groom's side alone, running *into* the names rather than following them: **"The Mollah family / requests the honour of your presence at the walima of / HUMAID ALI MOLLAH … SHUMAILA AKHTAR"**. The `.request` line therefore moves *above* the `h1` and carries a `.lead-in` modifier; the couple's names are never repeated, because they are the object of that sentence |
+| The hero | Issued by the groom's parents, as one sentence running *into* the names: **"MR. ISMAIL ALI MOLLAH & MRS. LABINA NUDRAT MOLLAH / request the honour of your presence at the walima of their son / HUMAID ALI MOLLAH — & — SHUMAILA AKHTAR"**. Humaid's lineage line is dropped — his parents are the hosts, named two lines above — while Shumaila keeps hers |
 | Events | Walima only — Shukrana and Baraat removed |
 | Map | Google Maps embedded inline (`.venue-map`), with the app link kept below it |
 | Closing | *"With love from the Mollah family"* |

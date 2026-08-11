@@ -12,8 +12,10 @@ dependencies. Open `index.html` in a browser and it works.
 ## Structure
 
 ```
-index.html                  cover/envelope, hero, photograph, Qur'an verse,
-                            countdown, events timeline, closing
+index.html                  cover/envelope, then the card in order:
+                            bismillah + Qur'an verse (one opening screen),
+                            the invitation itself, the nikah photograph,
+                            events timeline, countdown, closing
 assets/css/styles.css       the whole design system
 assets/js/main.js           envelope reveal, scroll reveals, particles, countdown
 assets/img/nikah-900.jpg    the photograph, cropped and web-sized

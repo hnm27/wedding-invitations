@@ -11,7 +11,7 @@ design notes that apply to all of them.
 
 | | |
 | --- | --- |
-| The hero | Restructured as one sentence issued by the bride's side alone, running *into* the names rather than following them: **"The Akhtar family / requests the honour of your presence at the baraat of / HUMAID ALI MOLLAH … SHUMAILA AKHTAR"**. The `.request` line therefore moves *above* the `h1` and carries a `.lead-in` modifier; the couple's names are never repeated, because they are the object of that sentence |
+| The hero | Issued by the bride's parents, as one sentence running *into* the names: **"MR. NASIM AKHTAR & MRS. NARGIS PARVEEN / request the honour of your presence at the baraat of their daughter / SHUMAILA AKHTAR — & — HUMAID ALI MOLLAH"**. This is the one card where **Shumaila is named first**, and the one where her lineage line is dropped — her parents are the hosts, named two lines above — while Humaid keeps his |
 | Events | Baraat only — Shukrana and Walima removed |
 | Map | Google Maps embedded inline (`.venue-map`), with the app link kept below it |
 | Closing | *"With love from the Akhtar family"* |

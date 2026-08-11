@@ -11,44 +11,62 @@ dependencies. Open any `index.html` in a browser and it works.
 
 ## The four variants
 
-| Folder | Card | Events | Invited by |
+| Folder | Card | Events | Issued by |
 | --- | --- | --- | --- |
-| [`wedding-invitation/`](wedding-invitation/) | The full invitation | Shukrana · Baraat · Walima | both families, together |
-| [`wedding-invitation-baraat/`](wedding-invitation-baraat/) | Baraat only | Baraat | the Akhtar family |
-| [`wedding-invitation-reception/`](wedding-invitation-reception/) | Walima only | Walima | the Mollah family |
-| [`wedding-invitation-baraat-reception/`](wedding-invitation-baraat-reception/) | Baraat & Walima | Baraat · Walima | both families, together |
+| [`wedding-invitation/`](wedding-invitation/) | The full invitation | Shukrana · Baraat · Walima | Humaid's parents |
+| [`wedding-invitation-baraat/`](wedding-invitation-baraat/) | Baraat only | Baraat | Shumaila's parents |
+| [`wedding-invitation-reception/`](wedding-invitation-reception/) | Walima only | Walima | Humaid's parents |
+| [`wedding-invitation-baraat-reception/`](wedding-invitation-baraat-reception/) | Baraat & Walima | Baraat · Walima | Humaid's parents |
 
-`wedding-invitation/` is the original and is left untouched; the other three are
-copies of it with the differences listed in their own READMEs.
+`wedding-invitation/` came first and the other three are copies of it, but all
+four are now maintained together — none of them is a pristine original.
 
 Note that `wedding-invitation-reception/` is the **Walima** card — the folder
 name is historical, and the word *Walima* is used everywhere a guest can see.
 
+### Every card reads in the same order
+
+```
+cover / envelope   →   bismillah + Qur'an verse   →   the invitation
+   →   the nikah photograph   →   the celebrations   →   counting the days
+   →   closing
+```
+
+The bismillah and the verse share the opening screen — the bismillah alone left
+a hole above the scroll cue, and the verse is the natural thing to read under
+it.
+
+The invitation itself is one sentence, issued by the parents, that runs *into*
+the names rather than sitting above or below them:
+
+> MR. ISMAIL ALI MOLLAH & MRS. LABINA NUDRAT MOLLAH
+> *request the honour of your presence at the walima of their son*
+> **HUMAID ALI MOLLAH** — & — **SHUMAILA AKHTAR**
+> *daughter of Nasim Akhtar & Nargis Parveen*
+
+The hosts' own child carries no lineage line, because their parents are already
+named two lines above; the other family keeps theirs. That asymmetry is
+deliberate — it tells a guest at a glance whose card they are holding.
+
 ### What actually differs between them
 
-Only four things, in every case:
-
-1. **Who is inviting**, and how the hero sentence is built. The two single-event
-   cards are issued by one side of the family, and their hero is one sentence
-   that runs *into* the names instead of following them:
-
-   > The Akhtar family
-   > *requests the honour of your presence at the baraat of*
-   > **HUMAID ALI MOLLAH** … **SHUMAILA AKHTAR**
-
-   So on those two cards the `.request` line moves *above* the `h1` and carries
-   a `.lead-in` modifier (a wider measure and a tighter top margin). The names
-   are the object of the sentence, which is why they are never repeated in it.
-   The two both-families cards keep the original arrangement — *"Together with
-   their families"*, the names, then *"request the honour of your presence"*.
-2. **The events timeline** — which of the three celebrations appear.
-3. **The closing line** — which family the card comes from.
-4. **The countdown target** — the Walima card counts to 3 January rather than to
+1. **Who hosts**, which decides four things at once: the names in the
+   `.eyebrow.hosts` line, whether the sentence ends *"of their son"* or *"of
+   their daughter"*, which name is set first, and which lineage line is dropped.
+   The Akhtars issue the Baraat, so Shumaila is named first there; the Mollahs
+   issue the other three.
+2. **Which celebration the sentence names** — *"at the walima of"*, *"at the
+   baraat of"*, *"at the baraat and walima of"*, *"at the wedding celebrations
+   of"*.
+3. **The events timeline** — which of the three celebrations appear.
+4. **The closing sign-off** — *The Mollah family and relatives*, or *The Akhtar
+   family and relatives* on the Baraat card.
+5. **The countdown target** — the Walima card counts to 3 January rather than to
    1 January, because the Baraat is not on that card.
-
-Plus two additions on the single-event cards: an **inline Google Map** for the
-venue, and a `.timeline.single` modifier that drops the timeline's vertical rail
-(with one stop it reads as a stray rule rather than a sequence).
+6. **The venue map** — the two single-event cards embed Google Maps inline and
+   use a `.timeline.single` modifier that drops the timeline's vertical rail
+   (with one stop it reads as a stray rule rather than a sequence). The two
+   multi-event cards keep the plain *Open in Google Maps* link.
 
 Everything else — the envelope cover, the photograph in its mihrab arch, the
 Qur'an verse, the palette, the type scale, the ambient petals — is identical
@@ -67,8 +85,10 @@ before changing any of the shared CSS.
 Each folder is a complete, standalone site:
 
 ```
-index.html                  cover/envelope, hero, photograph, Qur'an verse,
-                            countdown, events timeline, closing
+index.html                  cover/envelope, then the card in order:
+                            bismillah + Qur'an verse (one opening screen),
+                            the invitation itself, the nikah photograph,
+                            events timeline, countdown, closing
 assets/css/styles.css       the whole design system
 assets/js/main.js           envelope reveal, scroll reveals, particles, countdown
 assets/img/nikah-arch.jpg   the photograph, cropped and web-sized
@@ -78,13 +98,16 @@ package.json                a local dev server script; no dependencies
 
 The three assets are duplicated per folder rather than shared, because each
 folder is deployed as its own Vercel project with its own root directory. **A
-change to shared CSS or JS has to be copied into all four** — `diff -r` between
-two folders is the quickest way to confirm they have not drifted apart by
-accident:
+change to shared CSS or JS has to be copied into all four.** The stylesheets
+fall into two pairs that should each stay byte-identical — the single-event
+cards carry the `.venue-map` and `.timeline.single` rules, the multi-event ones
+do not — so these two checks should both come back silent:
 
 ```sh
-diff -r -x README.md -x package.json -x index.html \
-  wedding-invitation-baraat wedding-invitation-baraat-reception
+diff wedding-invitation-baraat/assets/css/styles.css \
+     wedding-invitation-reception/assets/css/styles.css
+diff wedding-invitation/assets/css/styles.css \
+     wedding-invitation-baraat-reception/assets/css/styles.css
 ```
 
 ## Running locally
