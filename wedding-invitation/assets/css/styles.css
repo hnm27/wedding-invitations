@@ -84,6 +84,13 @@ a{color:inherit}
   font-family:var(--display); font-size:.74rem; letter-spacing:.42em; text-wrap:balance;
   text-transform:uppercase; color:var(--ink); margin:0 0 .2rem; padding-left:.42em;
 }
+/* The hosts' line — "Mr. Ismail Ali Mollah & Mrs. Labina Nudrat Mollah" — runs
+   several times the length of the one-word labels this style was built for, so
+   it eases the tracking and balances over two lines rather than stranding a
+   surname on its own. Beats the narrow-phone .eyebrow override on specificity,
+   so it needs no media query of its own. */
+.eyebrow.hosts{letter-spacing:.2em;padding-left:.2em;line-height:1.55;
+  max-width:30ch;margin-inline:auto}
 
 /* ============ 1. COVER / ENVELOPE ========================= */
 #cover{
@@ -408,6 +415,13 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 .request{margin:clamp(18px,3.2vh,28px) auto 0;font-family:var(--display);
   letter-spacing:.14em;text-transform:uppercase;max-width:26ch;text-wrap:balance;
   font-size:clamp(.64rem,2.2vw,.8rem);color:var(--ink);padding-left:.14em}
+/* On a card issued by one side of the family, the sentence runs *into* the
+   names: "Mr. Ismail Ali Mollah & Mrs. Labina Nudrat Mollah / request the
+   honour of your presence at the walima of their son / HUMAID … SHUMAILA". So
+   the line sits above the h1, close under the hosts it belongs to, and takes a
+   wider measure than the short version it replaces — at 26ch it broke across
+   three ragged lines. */
+.request.lead-in{margin:.5rem auto 0;max-width:34ch}
 .scrollcue{margin-top:auto;padding-top:clamp(28px,6vh,52px);color:var(--ink);font-size:.76rem;
   letter-spacing:.36em;text-transform:uppercase;font-family:var(--display);padding-left:.36em}
 .scrollcue::after{content:'';display:block;width:1px;height:38px;margin:12px auto 0;
@@ -523,7 +537,8 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 .closing .lead{text-wrap:balance;font-style:italic;color:var(--ink-soft);max-width:40ch;margin:1.2rem auto 0}
 .families{margin-top:2.2rem;font-family:var(--display);letter-spacing:.28em;text-transform:uppercase;
   font-size:.76rem;color:var(--ink-soft);padding-left:.28em}
-.families b{display:block;font-weight:400;color:var(--ink);font-size:.96rem;margin-top:.5rem;letter-spacing:.2em}
+.families b{display:block;font-weight:400;color:var(--ink);font-size:.96rem;margin-top:.5rem;
+  letter-spacing:.2em;text-wrap:balance}
 
 /* ---- ambient life: falling petals and drifting gold dust ----
    Each petal is two elements: the outer one only falls, the inner one
