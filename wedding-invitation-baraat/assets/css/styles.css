@@ -464,75 +464,42 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   flex:none; font-family:var(--body); font-style:italic; font-weight:500;
   font-size:clamp(1.3rem,4.8vw,1.8rem); line-height:1; color:var(--gold);
 }
-/* ---- the names, struck in gold foil --------------------------------------
+/* ---- the names, set in gold ----------------------------------------------
    Foil stamping is the one printing technique every guest already associates
    with a wedding invitation, so the names carry it rather than sitting on
-   borrowed ornament. The fill is a vertical run of golds — darker at the top and
-   foot, warmer through the middle — which is what reads as metal rather than
-   as flat yellow text. A second, wider band of light travels across it: once
-   on arrival, then slowly on a loop.
+   borrowed ornament. The fill is a vertical run of golds — darker at the top
+   and foot, warmer through the middle — which is what reads as metal rather
+   than as flat yellow text.
 
-   The vertical gradient is deliberately smooth. A bright stop in the middle of
-   it renders as a hard pale line bisecting every letterform, which reads as a
-   rendering fault rather than a highlight; all of the shine comes from the
-   travelling band instead, because that one moves.
+   Nothing travels across it. A band of light sweeping through the letterforms
+   was distracting where the point is simply that the names are gold, so the
+   gradient is static and the only movement on this screen is the block
+   arriving.
 
    The golds are deliberately weighted dark. A mid-gold on this blush ground
    measures about 2.4:1, which fails even the large-text threshold; keeping the
-   mass of the gradient near --gold-dk holds it above 3:1 while the highlight
-   band supplies the shine.
+   mass of the gradient near --gold-dk holds it above 3:1.
 
    Guarded by @supports: without background-clip the transparent fill would
    leave the two names invisible, so unsupported browsers keep them in ink. */
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
   .invite .names .n{
-    background-image:
-      linear-gradient(102deg,rgba(255,252,240,0) 41%,rgba(255,249,230,.85) 49.5%,
-        rgba(255,252,240,0) 58%),
-      linear-gradient(180deg,#8A6730 0%,#7A5926 26%,#A9823B 52%,#7A5926 78%,
-        #8A6730 100%);
-    background-size:280% 100%,100% 100%;
-    background-position:150% 0,0 0;
-    background-repeat:no-repeat;
+    background-image:linear-gradient(180deg,#8A6730 0%,#7A5926 26%,#A9823B 52%,
+      #7A5926 78%,#8A6730 100%);
     -webkit-background-clip:text; background-clip:text;
     color:transparent; -webkit-text-fill-color:transparent;
   }
 }
 
-/* ---- the light around them ----------------------------------------------
-   A pool of warm light sits behind the two names and breathes very slowly, so
-   the block reads as lit rather than printed on flat blush; and a small glint
-   catches on the foil between passes of the band, the way light snags on the
-   raised edge of a real stamped letter. Both are slow and low-contrast — the
-   point is that the screen feels alive, not that you sit and watch it. */
+/* a pool of warm light behind the pair, so the gold has something to sit in
+   rather than lying on flat blush */
 .invite .names{position:relative}
 .invite .names::before{
   content:''; position:absolute; z-index:-1; pointer-events:none;
   left:50%; top:50%; width:min(680px,124%); height:118%;
   transform:translate(-50%,-50%);
   background:radial-gradient(60% 52% at 50% 50%,
-    rgba(255,247,232,.78),rgba(255,244,226,.34) 46%,rgba(255,244,226,0) 74%);
-}
-.invite .names::after{
-  content:''; position:absolute; z-index:1; pointer-events:none;
-  left:12%; top:15%; width:15px; height:15px; opacity:0;
-  background:
-    radial-gradient(closest-side,rgba(255,250,228,.95),rgba(255,246,214,0) 70%),
-    linear-gradient(0deg,transparent 46%,rgba(255,250,230,.9) 50%,transparent 54%),
-    linear-gradient(90deg,transparent 46%,rgba(255,250,230,.9) 50%,transparent 54%);
-}
-@media (prefers-reduced-motion:no-preference){
-  .invite.in .names::before{animation:halo 11s ease-in-out 2.2s infinite}
-  .invite.in .names::after{animation:glint 9s ease-in-out 3.6s infinite}
-}
-@keyframes halo{
-  0%,100%{opacity:.72;transform:translate(-50%,-50%) scale(.97)}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}
-}
-@keyframes glint{
-  0%,88%,100%{opacity:0;transform:scale(.3) rotate(0deg)}
-  92%{opacity:1;transform:scale(1) rotate(35deg)}
-  96%{opacity:0;transform:scale(.4) rotate(62deg)}
+    rgba(255,247,232,.72),rgba(255,244,226,.3) 46%,rgba(255,244,226,0) 74%);
 }
 
 /* ---- and its arrival ----------------------------------------------------
@@ -541,32 +508,20 @@ section{padding:clamp(54px,8.5vh,96px) 0}
    drawing outward from the ampersand. One pass only — nothing here loops,
    because a wedding card that keeps moving reads as a banner ad. */
 @media (prefers-reduced-motion:no-preference){
-  /* the supporting lines simply rise; the names are the event */
   .invite .screen > .eyebrow,
   .invite .screen > .request,
-  .invite .names > span:not(.n){opacity:0;transform:translateY(15px)}
+  .invite .names > span{opacity:0;transform:translateY(15px)}
   .invite.in .screen > .eyebrow,
   .invite.in .screen > .request,
-  .invite.in .names > span:not(.n){animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards}
+  .invite.in .names > span{animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards}
   .invite.in .screen > .eyebrow{animation-delay:.06s}
   .invite.in .screen > .request{animation-delay:.20s}
-  .invite.in .names > span:nth-child(2):not(.n){animation-delay:.62s}
-  .invite.in .names > span:nth-child(3):not(.n){animation-delay:.74s}
-  .invite.in .names > span:nth-child(4):not(.n){animation-delay:.86s}
-  .invite.in .names > span:nth-child(5):not(.n){animation-delay:.98s}
-  .invite.in .names > span:nth-child(6):not(.n){animation-delay:1.1s}
-
-  /* Each name is struck by the light rather than sliding in: the band sweeps
-     across and leaves the gold behind it. The second name is struck after the
-     first — `.joiner ~ .n` picks it out whichever order the card names them,
-     since the baraat card leads with Shumaila. */
-  .invite .names .n{opacity:0}
-  .invite.in .names .n{
-    animation:foil-strike 1.5s cubic-bezier(.22,.68,.3,1) forwards,
-              foil-pass 9s ease-in-out infinite;
-    animation-delay:.34s,2.6s;
-  }
-  .invite.in .names .joiner ~ .n{animation-delay:.9s,3.2s}
+  .invite.in .names > span:nth-child(1){animation-delay:.36s}
+  .invite.in .names > span:nth-child(2){animation-delay:.50s}
+  .invite.in .names > span:nth-child(3){animation-delay:.62s}
+  .invite.in .names > span:nth-child(4){animation-delay:.74s}
+  .invite.in .names > span:nth-child(5){animation-delay:.86s}
+  .invite.in .names > span:nth-child(6){animation-delay:.98s}
 
   /* the rules either side of the ampersand draw outward from it */
   .invite .names .joiner i{transform:scaleX(0);transform-origin:right center}
@@ -575,15 +530,6 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 }
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes draw{to{transform:scaleX(1)}}
-@keyframes foil-strike{
-  0%{opacity:0;background-position:150% 0,0 0}
-  30%{opacity:1}
-  100%{opacity:1;background-position:-55% 0,0 0}
-}
-@keyframes foil-pass{
-  0%{background-position:150% 0,0 0}
-  62%,100%{background-position:-55% 0,0 0}
-}
 
 /* ---- the invitation screen ----------------------------------------------
    It carries only a handful of short lines, so at the base scale it left most
