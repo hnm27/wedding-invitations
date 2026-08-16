@@ -408,8 +408,7 @@ section{padding:clamp(54px,8.5vh,96px) 0}
    screens tall on a phone: the surah ran off the bottom and the scroll cue was
    never seen. The Arabic carries most of that height in its line-height, so
    that is what gives. */
-.hero .bismillah{line-height:1.65;font-size:clamp(1.6rem,6.4vw,2.5rem)}
-.hero .rule{margin:1.2rem auto}
+.hero .rule{margin:.85rem auto}
 .hero > div{margin-block:auto}
 .scrollcue{margin-top:0}
 /* The bismillah now opens the card on its own, and the invitation proper — the
@@ -453,6 +452,21 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   flex:none; font-family:var(--body); font-style:italic; font-weight:500;
   font-size:clamp(1.3rem,4.8vw,1.8rem); line-height:1; color:var(--gold);
 }
+/* ---- the invitation screen ----------------------------------------------
+   It carries only a handful of short lines, so at the base scale it left most
+   of the screen empty. Everything grows with viewport height as well as width
+   — the names most of all, since they are what the guest came to read. */
+.invite .eyebrow.hosts{font-size:clamp(.74rem,.42vh + .84vw,.93rem);
+  letter-spacing:.16em;padding-left:.16em;max-width:34ch}
+.invite .request.lead-in{font-size:clamp(.68rem,.38vh + .76vw,.86rem);
+  margin-top:clamp(.65rem,1.4vh,1.05rem);max-width:36ch}
+.invite .names{margin-top:clamp(22px,4.2vh,42px)}
+.invite .names .n{font-size:clamp(1.38rem,1.45vh + 4.05vw,2.5rem)}
+.invite .names .lineage{font-size:clamp(.72rem,.42vh + .8vw,.9rem);
+  margin-top:clamp(.55rem,1.2vh,.88rem)}
+.invite .names .joiner{margin-block:clamp(13px,2.4vh,25px)}
+.invite .names .joiner b{font-size:clamp(1.25rem,1.2vh + 3vw,1.85rem)}
+
 .request{margin:clamp(18px,3.2vh,28px) auto 0;font-family:var(--display);
   letter-spacing:.14em;text-transform:uppercase;max-width:26ch;text-wrap:balance;
   font-size:clamp(.64rem,2.2vw,.8rem);color:var(--ink);padding-left:.14em}
@@ -532,6 +546,28 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   max-width:42ch;margin:1.1rem auto 0;font-size:1.04em}
 .verse .ref{font-family:var(--display);letter-spacing:.3em;text-transform:uppercase;
   font-size:.76rem;color:var(--ink);margin-top:1.1rem;padding-left:.3em}
+
+/* ---- the opening screen -------------------------------------------------
+   The Bismillah and the verse share it, and together they are the tallest
+   thing on the card. Everything here is sized so the whole block — down to
+   the surah reference and the scroll cue — clears one phone screen without
+   the reader having to scroll to find the end of the ayah. The Arabic
+   line-height is the single biggest lever, so it takes the largest cut.
+   Every size below mixes vh into its clamp as well as vw, so the block grows
+   on a tall phone and shrinks on a short one — it has to fill the screen
+   without ever pushing the reference or the cue past the fold. */
+.hero.verse .bismillah{font-size:clamp(1.5rem,1.9vh + 3.4vw,2.4rem);line-height:1.5;
+  margin-bottom:.45rem}
+.hero.verse .bismillah-en{font-size:clamp(.86rem,.7vh + 1vw,1rem);line-height:1.5;
+  max-width:33ch}
+.hero.verse .eyebrow{font-size:.68rem;letter-spacing:.3em;padding-left:.3em}
+.hero.verse .ar{font-size:clamp(1.05rem,1.5vh + 2.2vw,1.55rem);line-height:1.95;
+  max-width:27ch;margin-top:clamp(.6rem,1.4vh,1.1rem)}
+.hero.verse .en{font-size:clamp(.94rem,.9vh + 1.3vw,1.14rem);line-height:1.55;
+  max-width:45ch;margin-top:clamp(.7rem,1.5vh,1.15rem)}
+.hero.verse .ref{font-size:.72rem;margin-top:clamp(.65rem,1.4vh,1rem)}
+.hero.verse .scrollcue{font-size:.7rem;padding-top:clamp(16px,3.4vh,34px)}
+.hero.verse .scrollcue::after{height:28px;margin-top:10px}
 
 /* countdown ----------------------------------------------- */
 .count{text-align:center}
@@ -626,6 +662,16 @@ section{padding:clamp(54px,8.5vh,96px) 0}
 .families b{display:block;font-weight:400;color:var(--ink);font-size:.96rem;margin-top:.5rem;
   letter-spacing:.2em;text-wrap:balance}
 
+/* ---- the celebrations screen -------------------------------------------
+   This is the one part that felt cramped: the venue details are dense, and on
+   the cards that carry two or three of them the stops ran into one another.
+   The events get more air between them, and the map gives up some height to
+   pay for it — it is the most compressible thing on the screen. */
+.events .timeline{margin-top:clamp(1.9rem,4vh,3rem)}
+.ev{padding-bottom:clamp(2.8rem,5.4vh,4rem)}
+.ev:last-child{padding-bottom:0}
+.venue-map{width:min(380px,100%);aspect-ratio:3/2;margin-top:clamp(.9rem,2vh,1.35rem)}
+
 /* ---- ambient life: falling petals and drifting gold dust ----
    Each petal is two elements: the outer one only falls, the inner one
    only sways and turns. Splitting them lets the two motions run on
@@ -689,6 +735,14 @@ section{padding:clamp(54px,8.5vh,96px) 0}
   .frame i:nth-child(4){bottom:-1px;right:-1px;border-width:0 1px 1px 0}
 }
 
+
+/* ---- short viewports ------------------------------------
+   Below about 640px of usable height the generous per-section padding is what
+   tips the opening screen over the fold, not the type — which is already
+   scaling down with vh. So the padding gives way first. */
+@media (max-height:640px){
+  #main > section{padding-block:clamp(22px,4vh,44px)}
+}
 
 /* ---- short viewports (phones held sideways) -------------
    The cover is a fixed, non-scrolling panel, so anything taller than the
